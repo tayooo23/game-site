@@ -30,6 +30,9 @@
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
     }
 
     /* Header */
@@ -519,11 +522,17 @@
   const boardEl = document.getElementById('board-el');
 
   boardEl.addEventListener('touchstart', e => {
+    e.preventDefault();
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-  }, { passive: true });
+  }, { passive: false });
+
+  boardEl.addEventListener('touchmove', e => {
+    e.preventDefault();
+  }, { passive: false });
 
   boardEl.addEventListener('touchend', e => {
+    e.preventDefault();
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < MIN_SWIPE) return;
@@ -532,7 +541,7 @@
     } else {
       move(dy > 0 ? 'down' : 'up');
     }
-  });
+  }, { passive: false });
 
   newGame();
 </script>
