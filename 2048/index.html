@@ -175,11 +175,6 @@
       user-select: none;
     }
 
-    .tile-1024,
-    .tile-2048 { font-size: clamp(1rem, 3.5vw, 1.8rem); }
-
-    .tile-super { font-size: clamp(0.8rem, 2.8vw, 1.5rem); }
-
     @keyframes tile-appear {
       0%   { transform: scale(0); opacity: 0; }
       60%  { transform: scale(1.1); }
@@ -197,18 +192,18 @@
     .tile-merged { animation: tile-merge 150ms ease forwards; }
 
     /* Tile colors */
-    .tile-2    { background: #f0ece8; color: var(--text); }
-    .tile-4    { background: #e4ddd6; color: var(--text); }
-    .tile-8    { background: var(--accent); color: white; }
-    .tile-16   { background: #e8720e; color: white; }
-    .tile-32   { background: #d96400; color: white; }
-    .tile-64   { background: #c55800; color: white; }
-    .tile-128  { background: #3c5159; color: white; }
-    .tile-256  { background: #2f4149; color: white; }
-    .tile-512  { background: #233139; color: white; }
-    .tile-1024 { background: #172529; color: white; }
-    .tile-2048 { background: var(--text); color: var(--accent); box-shadow: 0 0 20px rgba(245,129,28,0.6); }
-    .tile-super { background: #0d1a1f; color: var(--accent); }
+    .tile-2    { background: #f0ebe4; color: #201d1e; }
+    .tile-4    { background: #e0d5c8; color: #201d1e; }
+    .tile-8    { background: #cfc0af; color: #201d1e; }
+    .tile-16   { background: #f5a55a; color: white; }
+    .tile-32   { background: #f5811c; color: white; }
+    .tile-64   { background: #d96800; color: white; }
+    .tile-128  { background: #5a7a85; color: white; }
+    .tile-256  { background: #3c5159; color: white; }
+    .tile-512  { background: #2a3d45; color: white; }
+    .tile-1024 { background: #e05a3a; color: white; font-size: clamp(1rem, 3.5vw, 1.8rem); }
+    .tile-2048 { background: #c03a1e; color: white; box-shadow: 0 0 20px rgba(192,58,30,0.6); font-size: clamp(1rem, 3.5vw, 1.8rem); }
+    .tile-super { background: #201d1e; color: #f5811c; font-size: clamp(0.8rem, 2.8vw, 1.5rem); }
 
     /* Overlays */
     .overlay {
@@ -319,14 +314,14 @@
 </main>
 
 <script>
-  let board, score, bestScore, prevState, hasWon, gameRunning;
+  let board, score, bestScore, undoStack, hasWon, gameRunning;
 
   bestScore = parseInt(localStorage.getItem('2048-best') || '0');
 
   function newGame() {
     board = Array.from({length: 4}, () => Array(4).fill(null));
     score = 0;
-    prevState = null;
+    undoStack = [];
     hasWon = false;
     gameRunning = true;
     hideOverlays();
@@ -417,7 +412,8 @@
 
     if (!changed) return;
 
-    prevState = { board: oldBoard, score: oldScore, hadWon: hasWon };
+    if (undoStack.length >= 3) undoStack.shift();
+    undoStack.push({ board: oldBoard, score: oldScore, hadWon: hasWon });
     board = nb;
     score += scoreAdd;
 
@@ -461,11 +457,11 @@
   }
 
   function undo() {
-    if (!prevState) return;
-    board = prevState.board;
-    score = prevState.score;
-    hasWon = prevState.hadWon;
-    prevState = null;
+    if (!undoStack.length) return;
+    const prev = undoStack.pop();
+    board = prev.board;
+    score = prev.score;
+    hasWon = prev.hadWon;
     gameRunning = true;
     hideOverlays();
     render();
@@ -505,7 +501,9 @@
   function updateUI() {
     document.getElementById('score-val').textContent = score;
     document.getElementById('best-val').textContent = bestScore;
-    document.getElementById('undo-btn').disabled = !prevState;
+    const left = undoStack.length;
+    document.getElementById('undo-btn').textContent = `↩ ${left}`;
+    document.getElementById('undo-btn').disabled = left === 0;
   }
 
   document.addEventListener('keydown', e => {

@@ -2,43 +2,45 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1024</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="1024ゲーム by tayooo — タイルをスライドして1024を目指そう！">
+  <title>1024 | tayooo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="header">
-    <h1>1024</h1>
-    <div class="scores">
-      <div class="score-box">
-        <div class="label">Score</div>
-        <div class="value" id="score">0</div>
-      </div>
-      <div class="score-box">
-        <div class="label">Best</div>
-        <div class="value" id="best">0</div>
-      </div>
+<header>
+  <a href="https://tayooo.com" class="logo">TAY<span class="accent">OOO</span></a>
+  <span class="header-title">1024</span>
+</header>
+
+<main>
+  <div class="score-area">
+    <div class="score-box">
+      <span class="score-label">Score</span>
+      <span class="score-value" id="score">0</span>
     </div>
+    <div class="score-box">
+      <span class="score-label">Best</span>
+      <span class="score-value" id="best">0</span>
+    </div>
+    <button class="btn" id="btn-undo" disabled>↩ 3</button>
+    <button class="btn btn-accent" id="btn-new">NEW GAME</button>
   </div>
 
-  <div class="controls">
-    <button class="btn btn-undo" id="btn-undo" disabled>↩ 3</button>
-    <button class="btn btn-new"  id="btn-new">New Game</button>
-  </div>
-
-  <div class="grid-wrapper">
+  <div class="grid-outer">
     <div class="grid-bg">
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
-      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
     </div>
+
     <div class="grid-tiles" id="grid-tiles"></div>
+
     <div class="overlay" id="overlay" hidden>
       <div class="overlay-title" id="overlay-title"></div>
       <div class="overlay-sub"   id="overlay-sub"></div>
@@ -46,9 +48,9 @@
     </div>
   </div>
 
-  <p class="hint">Arrow keys or swipe &nbsp;·&nbsp; U = undo</p>
-  <a class="back-link" href="../">← All games</a>
+  <div class="instructions">← ↑ ↓ → キーまたはスワイプで操作 &nbsp;·&nbsp; U = undo</div>
+</main>
 
-  <script src="game.js"></script>
+<script src="game.js"></script>
 </body>
 </html>
