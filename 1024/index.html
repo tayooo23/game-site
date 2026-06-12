@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1024</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>1024</h1>
+    <div class="scores">
+      <div class="score-box">
+        <div class="label">Score</div>
+        <div class="value" id="score">0</div>
+      </div>
+      <div class="score-box">
+        <div class="label">Best</div>
+        <div class="value" id="best">0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-undo" id="btn-undo" disabled>↩ 3</button>
+    <button class="btn btn-new"  id="btn-new">New Game</button>
+  </div>
+
+  <div class="grid-wrapper">
+    <div class="grid-bg">
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+      <div class="cell-bg"></div><div class="cell-bg"></div>
+    </div>
+    <div class="grid-tiles" id="grid-tiles"></div>
+    <div class="overlay" id="overlay" hidden>
+      <div class="overlay-title" id="overlay-title"></div>
+      <div class="overlay-sub"   id="overlay-sub"></div>
+      <div class="overlay-actions" id="overlay-actions"></div>
+    </div>
+  </div>
+
+  <p class="hint">Arrow keys or swipe &nbsp;·&nbsp; U = undo</p>
+  <a class="back-link" href="../">← All games</a>
+
+  <script src="game.js"></script>
+</body>
+</html>

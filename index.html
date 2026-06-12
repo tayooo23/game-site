@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tayooo / games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 64px;
+    }
+
+    .site-header {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .site-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--color-text);
+    }
+
+    .site-title span {
+      color: var(--color-muted);
+      font-weight: 400;
+    }
+
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: var(--color-sub); }
+
+    .games {
+      width: 100%;
+      max-width: 560px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 28px 24px 22px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+
+    .card:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+
+    .card-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      letter-spacing: -0.5px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--color-sub);
+      line-height: 1.5;
+    }
+
+    .card-play {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--color-muted);
+    }
+
+    .card:hover .card-play { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-title">tayooo <span>/ games</span></div>
+    <a class="back-link" href="https://tayooo.com">← tayooo.com</a>
+  </header>
+
+  <main class="games">
+    <a class="card" href="2048/">
+      <div class="card-name">2048</div>
+      <div class="card-desc">Slide tiles and combine them to reach 2048.</div>
+      <div class="card-play">Play →</div>
+    </a>
+    <a class="card" href="1024/">
+      <div class="card-name">1024</div>
+      <div class="card-desc">Same idea, half the goal. Reach 1024 with undo support.</div>
+      <div class="card-play">Play →</div>
+    </a>
+  </main>
+
+</body>
+</html>

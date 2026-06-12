@@ -1,0 +1,26 @@
+:root {
+  --color-bg:       #edf1ec;
+  --color-text:     #201d1e;
+  --color-sub:      #3c5159;
+  --color-accent:   #f5811c;
+  --color-surface:  #f5f2ee;
+  --color-surface2: #e8e4dd;
+  --color-muted:    #9aa89e;
+  --color-border:   #d4cfc8;
+  --color-gold:     #c9a96e;
+
+  /* 1024タイル色 */
+  --tile-2:    #f0ebe4;
+  --tile-4:    #e8e0d5;
+  --tile-8:    #d4c5b0;
+  --tile-16:   #c9a96e;
+  --tile-32:   #c49a5a;
+  --tile-64:   #be8a45;
+  --tile-128:  #3c5159;
+  --tile-256:  #2e404a;
+  --tile-512:  #203038;
+  --tile-1024: #f5811c;
+
+  --radius: 10px;
+  --font: 'Inter', 'Helvetica Neue', sans-serif;
+}
